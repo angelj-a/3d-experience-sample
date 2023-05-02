@@ -17,38 +17,32 @@
 
       <!-- Escena A-FRAME -->
       <a-scene>
-        <a-box class="link"
+
+        <a-sky color="#ECECEC"></a-sky>
+        <a-box id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
+
+        <a-box class="selectable"
           position="-1 0.5 -3"
           rotation="0 45 0"
           color="#4CC3D9"
-          event-set__mouseenter="scale: 1.2 1.2 1.2"
-          event-set__mouseleave="scale: 1 1 1">
+          event-set__mouseenter="opacity: 0.7"
+          event-set__mouseleave="opacity: 1">
         </a-box>
-        <a-sphere
+        <a-sphere class="selectable"
           position="0 1.25 -5"
           radius="1.25"
           color="#EF2D5E"
-          event-set__mouseenter="scale: 1.2 1.2 1.2"
-          event-set__mouseleave="scale: 1 1 1">
+          event-set__mouseenter="opacity: 0.7"
+          event-set__mouseleave="opacity: 1">
         </a-sphere>
-        <a-cylinder
+        <a-cylinder class="selectable"
           position="1 0.75 -3"
           radius="0.5"
           height="1.5"
           color="#FFC65D"
-          event-set__mouseenter="scale: 1.2 1.2 1.2"
-          event-set__mouseleave="scale: 1 1 1">
+          event-set__mouseenter="opacity: 0.7"
+          event-set__mouseleave="opacity: 1">
         </a-cylinder>
-        <a-plane
-          position="0 0 -4"
-          rotation="-90 0 0"
-          width="4" 
-          height="4" 
-          color="#7BC8A4"
-          event-set__mouseenter="scale: 1.2 1.2 1.2"
-          event-set__mouseleave="scale: 1 1 1">
-        </a-plane>
-        <a-sky color="#ECECEC"></a-sky>
 
         <a-camera>
           <!-- Agrega un cursor -->
@@ -58,7 +52,7 @@
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
             event-set__mouseenter="_event: mouseenter; color: springgreen"
             event-set__mouseleave="_event: mouseleave; color: black"
-            raycaster="objects: *">
+            raycaster="objects: .selectable">
           </a-cursor>
         </a-camera>
       </a-scene>
