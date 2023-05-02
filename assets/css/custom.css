@@ -1,0 +1,19 @@
+#app-toolbar {
+    background:lightblue;
+    position:absolute;
+    left:20px;
+    top:20px;
+    height: 80%;
+    width: 10%;
+    z-index: 99999999;
+}
+
+#app-entity-properties {
+    background:lightblue;
+    position:absolute;
+    right: 20px;
+    top: 20px;
+    height: 80%;
+    width: 10%;
+    z-index: 99999999;
+}

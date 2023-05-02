@@ -1,16 +1,72 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-      <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
-    </a-scene>
+    <div id="app-container">
+      <!-- Barra de herramientas -->
+      <div id="app-toolbar">
+        <ul style="list-style: none">
+          <li><button id="accion1" href="#">Propiedades</a></li>
+          <li><button id="accion2" href="#">Agregar</a></li>
+          <li><button id="accion3" href="#">Borrar</a></li>
+        </ul>
+      </div>
+
+      <!-- Escena A-FRAME -->
+      <a-scene>
+        <a-box class="link"
+          position="-1 0.5 -3"
+          rotation="0 45 0"
+          color="#4CC3D9"
+          event-set__mouseenter="scale: 1.2 1.2 1.2"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-box>
+        <a-sphere
+          position="0 1.25 -5"
+          radius="1.25"
+          color="#EF2D5E"
+          event-set__mouseenter="scale: 1.2 1.2 1.2"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-sphere>
+        <a-cylinder
+          position="1 0.75 -3"
+          radius="0.5"
+          height="1.5"
+          color="#FFC65D"
+          event-set__mouseenter="scale: 1.2 1.2 1.2"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-cylinder>
+        <a-plane
+          position="0 0 -4"
+          rotation="-90 0 0"
+          width="4" 
+          height="4" 
+          color="#7BC8A4"
+          event-set__mouseenter="scale: 1.2 1.2 1.2"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-plane>
+        <a-sky color="#ECECEC"></a-sky>
+
+        <a-camera>
+          <!-- Agrega un cursor -->
+          <a-cursor
+            id="cursor"
+            animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+            animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+            event-set__mouseenter="_event: mouseenter; color: springgreen"
+            event-set__mouseleave="_event: mouseleave; color: black"
+            raycaster="objects: *">
+          </a-cursor>
+        </a-camera>
+      </a-scene>
+
+      <!-- Información de la entidad seleccionada -->
+      <div id="app-entity-properties">
+          <span>Sin entidades selecionadas</span>
+      </div>
+    </div>
   </body>
 </html>
