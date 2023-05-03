@@ -8,11 +8,22 @@
     <div id="app-container">
       <!-- Barra de herramientas -->
       <div id="app-toolbar">
-        <ul style="list-style: none">
-          <li><button id="accion1" href="#">Propiedades</a></li>
-          <li><button id="accion2" href="#">Agregar</a></li>
-          <li><button id="accion3" href="#">Borrar</a></li>
-        </ul>
+        <fieldset>
+          <legend><strong>Acciones</strong></legend>
+          <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties">
+          <label for="action-edit-properties">Editar propiedades</label><br>
+          <input type="radio" id="action-add-entity" name="actions" value="action-add-entity">
+          <label for="action-add-entity">Agregar Entidad</label><br>
+          <select id="add-entity-list" name="actions" value="">
+            <option value="box">box</option>
+            <option value="sphere">sphere</option>
+            <option value="plane">plane</option>
+            <option value="cylinder">cylinder</option>
+          </select>
+          <br>
+          <input type="radio" id="action-remove-entity" name="actions" value="action-remove-entity">
+          <label for="action-remove-entity">Borrar Entidad</label><br>
+        </fieldset>
       </div>
 
       <!-- Escena A-FRAME -->

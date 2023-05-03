@@ -4,8 +4,13 @@
     left:20px;
     top:20px;
     height: 80%;
-    width: 10%;
+    width: 15%;
     z-index: 999999;
+}
+
+#app-toolbar label {
+    font: sans-serif;
+    font-size: small;
 }
 
 #app-entity-properties {
@@ -14,6 +19,6 @@
     right: 20px;
     top: 20px;
     height: 80%;
-    width: 10%;
+    width: 15%;
     z-index: 999999;
 }
