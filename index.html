@@ -3,6 +3,7 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
     <script src="components/add-entities.js"></script>
+    <script type="module" src="systems/entities-editor.js"></script>
     <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
   </head>
   <body>
@@ -12,9 +13,9 @@
       <div id="app-toolbar">
         <fieldset>
           <legend><strong>Acciones</strong></legend>
-          <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties" checked>
+          <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties">
           <label for="action-edit-properties">Editar propiedades</label><br>
-          <input type="radio" id="action-add-entity" name="actions" value="action-add-entity">
+          <input type="radio" id="action-add-entity" name="actions" value="action-add-entity" checked>
           <label for="action-add-entity">Agregar Entidad</label><br>
           <select id="add-entity-list" name="actions" value="">
             <option value="box">box</option>
@@ -40,7 +41,7 @@
             id="cursor"
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-            event-set__mouseenter="_event: mouseenter; color: springgreen"
+            event-set__mouseenter="_event: mouseenter; color: springgreen; "
             event-set__mouseleave="_event: mouseleave; color: black"
             raycaster="objects: .selectable">
           </a-cursor>

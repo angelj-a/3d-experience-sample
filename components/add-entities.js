@@ -11,11 +11,8 @@ AFRAME.registerComponent('add-entities', {
 
         newEntity.setAttribute('geometry', 'primitive', this.data.primitive);
         newEntity.setAttribute('position', newPosition);
-        newEntity.setAttribute('class', 'selectable');
-
+        newEntity.classList.add('selectable');
         this.el.sceneEl.appendChild(newEntity);
-
-        // to-do refrescar raycaster
       }
     }
 });

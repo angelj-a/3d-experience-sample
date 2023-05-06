@@ -3,8 +3,6 @@
     position:absolute;
     left:20px;
     top:20px;
-    height: 80%;
-    width: 15%;
     z-index: 999999;
 }
 
@@ -19,6 +17,7 @@
     right: 20px;
     top: 20px;
     height: 80%;
-    width: 15%;
+    width: 20%;
+    text-align: center;
     z-index: 999999;
 }
