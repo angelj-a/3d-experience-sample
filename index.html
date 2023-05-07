@@ -1,48 +1,44 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="components/add-entities.js"></script>
+    <script type="module" src="systems/entities-editor.js"></script>
     <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
   </head>
   <body>
     <div id="app-container">
-      <!-- Barra de herramientas -->
-      <div id="app-toolbar">
-        <ul style="list-style: none">
-          <li><button id="accion1" href="#">Propiedades</a></li>
-          <li><button id="accion2" href="#">Agregar</a></li>
-          <li><button id="accion3" href="#">Borrar</a></li>
-        </ul>
+      <div id="app-editor">
+        <!-- Barra de herramientas -->
+        <div id="app-toolbar">
+          <fieldset>
+            <legend><strong>Acciones</strong></legend>
+            <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties">
+            <label for="action-edit-properties">Editar propiedades</label><br>
+            <input type="radio" id="action-add-entity" name="actions" value="action-add-entity">
+            <label for="action-add-entity">Agregar Entidad</label><br>
+            <select id="add-entity-list" name="actions" value="">
+              <option value="box">box</option>
+              <option value="sphere">sphere</option>
+              <option value="plane">plane</option>
+              <option value="cylinder">cylinder</option>
+            </select>
+            <br>
+            <input type="radio" id="action-remove-entity" name="actions" value="action-remove-entity">
+            <label for="action-remove-entity">Borrar Entidad</label><br>
+          </fieldset>
+        </div>
+        <!-- Información de la entidad seleccionada -->
+        <div id="app-entity-properties" hidden>
+          <span>Sin entidades selecionadas</span>
+        </div>
       </div>
-
       <!-- Escena A-FRAME -->
       <a-scene>
 
         <a-sky color="#ECECEC"></a-sky>
-        <a-box id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
-
-        <a-box class="selectable"
-          position="-1 0.5 -3"
-          rotation="0 45 0"
-          color="#4CC3D9"
-          event-set__mouseenter="opacity: 0.7"
-          event-set__mouseleave="opacity: 1">
-        </a-box>
-        <a-sphere class="selectable"
-          position="0 1.25 -5"
-          radius="1.25"
-          color="#EF2D5E"
-          event-set__mouseenter="opacity: 0.7"
-          event-set__mouseleave="opacity: 1">
-        </a-sphere>
-        <a-cylinder class="selectable"
-          position="1 0.75 -3"
-          radius="0.5"
-          height="1.5"
-          color="#FFC65D"
-          event-set__mouseenter="opacity: 0.7"
-          event-set__mouseleave="opacity: 1">
-        </a-cylinder>
+        <a-box class="selectable" id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
 
         <a-camera>
           <!-- Agrega un cursor -->
@@ -50,17 +46,12 @@
             id="cursor"
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-            event-set__mouseenter="_event: mouseenter; color: springgreen"
+            event-set__mouseenter="_event: mouseenter; color: springgreen; "
             event-set__mouseleave="_event: mouseleave; color: black"
             raycaster="objects: .selectable">
           </a-cursor>
         </a-camera>
       </a-scene>
-
-      <!-- Información de la entidad seleccionada -->
-      <div id="app-entity-properties">
-          <span>Sin entidades selecionadas</span>
-      </div>
     </div>
   </body>
 </html>
