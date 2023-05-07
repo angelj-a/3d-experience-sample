@@ -1,9 +1,11 @@
 import { Toolbar, ACTION_EDIT_PROPERTY, ACTION_ADD_ENTITY, ACTION_REMOVE_ENTITY, NO_ACTION } from './ui/toolbar.js';
+import { PropertiesPanel } from './ui/properties-panel.js';
 
 AFRAME.registerSystem('entities-editor', {
     init: function () {
         this.ui = {
-            toolbar: new Toolbar(this)
+            toolbar: new Toolbar(this),
+            propertiesPanel: new PropertiesPanel(this, '#app-entity-properties')
         }
         this.supportingElement = this.sceneEl.querySelector('#ground');
         this.models = {
@@ -30,16 +32,21 @@ AFRAME.registerSystem('entities-editor', {
         switch (newMode) {
             case ACTION_EDIT_PROPERTY:
                 this.state.enabledComponent = 'edit-properties';
+                this.supportingElement.setAttribute('edit-properties', 'formSelector', '#app-entity-properties');
+                this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
+                this.ui.propertiesPanel.show();
                 break;
             case ACTION_ADD_ENTITY:
                 this.state.enabledComponent = 'add-entities';
                 this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', `#${this.supportingElement.id}`);
                 this.supportingElement.setAttribute('add-entities', 'primitive', this.ui.toolbar.getSelectedPrimitive());
+                this.ui.propertiesPanel.hide();
                 break;
             case ACTION_REMOVE_ENTITY:
                 this.state.enabledComponent = 'remove-entities';
                 this.supportingElement.setAttribute('remove-entities', '');
                 this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
+                this.ui.propertiesPanel.hide();
                 break;
             default:
                 console.warn('Unknown action');
