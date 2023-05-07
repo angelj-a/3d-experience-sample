@@ -33,10 +33,13 @@ AFRAME.registerSystem('entities-editor', {
                 break;
             case ACTION_ADD_ENTITY:
                 this.state.enabledComponent = 'add-entities';
+                this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
                 this.supportingElement.setAttribute('add-entities', 'primitive', this.ui.toolbar.getSelectedPrimitive());
                 break;
             case ACTION_REMOVE_ENTITY:
                 this.state.enabledComponent = 'remove-entities';
+                this.supportingElement.setAttribute('remove-entities', '');
+                this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.removable');
                 break;
             default:
                 console.warn('Unknown action');
