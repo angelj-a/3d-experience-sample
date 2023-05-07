@@ -31,20 +31,30 @@ AFRAME.registerSystem('entities-editor', {
         // Agrega el componente correspondiente a la acción elegida
         switch (newMode) {
             case ACTION_EDIT_PROPERTY:
+                // activa componente
                 this.state.enabledComponent = 'edit-properties';
                 this.supportingElement.setAttribute('edit-properties', '');
+
+                // prepara otros elementos y componentes
                 this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
+                this.sceneEl.addEventListener('entity-selected', this.ui.propertiesPanel.entitySelectedHandler);
                 this.ui.propertiesPanel.show();
                 break;
             case ACTION_ADD_ENTITY:
+                // activa componente
                 this.state.enabledComponent = 'add-entities';
-                this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', `#${this.supportingElement.id}`);
                 this.supportingElement.setAttribute('add-entities', 'primitive', this.ui.toolbar.getSelectedPrimitive());
+
+                // prepara otros elementos y componentes
+                this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', `#${this.supportingElement.id}`);
+                this.sceneEl.removeEventListener('entity-selected', this.ui.propertiesPanel.entitySelectedHandler);
                 this.ui.propertiesPanel.hide();
                 break;
             case ACTION_REMOVE_ENTITY:
                 this.state.enabledComponent = 'remove-entities';
                 this.supportingElement.setAttribute('remove-entities', '');
+
+                // prepara otros elementos y componentes
                 this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
                 this.ui.propertiesPanel.hide();
                 break;
@@ -59,5 +69,6 @@ AFRAME.registerSystem('entities-editor', {
         if (this.state.currentMode == ACTION_ADD_ENTITY) {
             this.supportingElement.setAttribute('add-entities', 'primitive', newPrimitive);
         }
-    }
+    },
+
   });
