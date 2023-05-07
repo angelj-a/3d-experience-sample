@@ -5,8 +5,9 @@
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
     <script src="components/add-entities.js"></script>
     <script src="components/remove-entities.js"></script>
+    <script src="components/edit-properties.js"></script>
     <script type="module" src="systems/entities-editor.js"></script>
-    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
   </head>
   <body>
     <div id="app-container">
@@ -31,15 +32,17 @@
           </fieldset>
         </div>
         <!-- Información de la entidad seleccionada -->
-        <div id="app-entity-properties" hidden>
+        <div id="app-entity-properties" class="no-selected-entities" hidden>
           <span>Sin entidades selecionadas</span>
+          <form>
+          </form>
         </div>
       </div>
       <!-- Escena A-FRAME -->
       <a-scene>
 
         <a-sky color="#ECECEC"></a-sky>
-        <a-box class="selectable" id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
+        <a-box id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
 
         <a-camera>
           <!-- Agrega un cursor -->
@@ -49,7 +52,7 @@
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
             event-set__mouseenter="_event: mouseenter; color: springgreen; "
             event-set__mouseleave="_event: mouseleave; color: black"
-            raycaster="objects: .selectable">
+            raycaster="">
           </a-cursor>
         </a-camera>
       </a-scene>
