@@ -1,6 +1,7 @@
 AFRAME.registerComponent('add-entities', {
     schema: {
       primitive: {default: 'box'},
+      color: {default: 'blue'},
       centerOfMassesOffsetY: {default: 1}
     },
     // doc: https://aframe.io/docs/1.4.0/core/component.html#events
@@ -17,6 +18,7 @@ AFRAME.registerComponent('add-entities', {
       let newEntity = document.createElement('a-entity');
 
       newEntity.setAttribute('geometry', 'primitive', this.data.primitive);
+      newEntity.setAttribute('material', 'color', this.data.color);
       newEntity.setAttribute('position', position);
       newEntity.classList.add('selectable');
       newEntity.classList.add('removable');
