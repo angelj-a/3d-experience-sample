@@ -32,7 +32,7 @@ AFRAME.registerSystem('entities-editor', {
         switch (newMode) {
             case ACTION_EDIT_PROPERTY:
                 this.state.enabledComponent = 'edit-properties';
-                this.supportingElement.setAttribute('edit-properties', 'formSelector', '#app-entity-properties');
+                this.supportingElement.setAttribute('edit-properties', '');
                 this.sceneEl.querySelector('[raycaster]').setAttribute('raycaster', 'objects', '.selectable');
                 this.ui.propertiesPanel.show();
                 break;

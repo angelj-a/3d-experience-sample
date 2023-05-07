@@ -13,23 +13,28 @@ export function Toolbar(system) {
 
     this.selectedPrimitive = document.querySelector('#add-entity-list option:checked').value;
 
+    // Selección de acción Editar propiedades de entidad
     document.querySelector('#action-edit-properties').addEventListener('click', (event) => {
         system.setMode(ACTION_EDIT_PROPERTY);
     });
    
+    // Selección de acción Agregar entidades
     document.querySelector('#action-add-entity').addEventListener('click', (event) => {
         this.system.setMode(ACTION_ADD_ENTITY);
     });
     
+    // Selección de acción Borrar entidades
     document.querySelector('#action-remove-entity').addEventListener('click', (event) => {
         this.system.setMode(ACTION_REMOVE_ENTITY);
     });
 
+    // Selección de primitiva usada por Agregar entidades
     document.querySelector('#add-entity-list').addEventListener('change', (event) => {
         this.selectedPrimitive = event.target.value;
         this.system.changePrimitive(this.selectedPrimitive);
     });
 
+    // Getters
     this.getSelectedPrimitive = () => this.selectedPrimitive;
     this.getSelectedAction = () => {
         let selectedOption = document.querySelector('#app-toolbar [name="actions"]:checked');
