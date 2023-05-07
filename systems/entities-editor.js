@@ -2,22 +2,44 @@ import { Toolbar, ACTION_EDIT_PROPERTY, ACTION_ADD_ENTITY, ACTION_REMOVE_ENTITY 
 
 AFRAME.registerSystem('entities-editor', {
     init: function () {
-        this.toolbar = new Toolbar(this);
-        this.componentAddEntity = this.sceneEl.querySelector('[add-entities]');
-        this.componentAddEntity.setAttribute('add-entities', 'primitive', this.toolbar.getSelectedPrimitive());
+        this.ui = {
+            toolbar: new Toolbar(this)
+        }
+        this.supportingElement = this.sceneEl.querySelector('#ground');
+        this.models = {
+            entities: {
+                'ground': this.supportingElement
+            }
+        }
+
+        this.state = {
+            enabledComponent: '',
+            currentMode: null
+        }
     },
   
     changeMode: function(newMode) {
-        var mode = undefined;
+        this.supportingElement.removeAttribute(this.state.enabledComponent);
+
         switch (newMode) {
             case ACTION_EDIT_PROPERTY:
-                mode = 'edit-property';
+                this.state = {
+                    enabledComponent: 'edit-properties',
+                    currentMode: ACTION_EDIT_PROPERTY
+                };
                 break;
             case ACTION_ADD_ENTITY:
-                mode = 'add-entity';
+                this.state = {
+                    enabledComponent: 'add-entities',
+                    currentMode: ACTION_ADD_ENTITY
+                };
+                this.supportingElement.setAttribute('add-entities', 'primitive', this.ui.toolbar.getSelectedPrimitive());
                 break;
             case ACTION_REMOVE_ENTITY:
-                mode = 'edit-property';
+                this.state = {
+                    enabledComponent: 'remove-entities',
+                    currentMode: ACTION_REMOVE_ENTITY
+                };
                 break;
             default:
                 console.warn('Unknown action');
@@ -25,6 +47,8 @@ AFRAME.registerSystem('entities-editor', {
     },
 
     changePrimitive: function(newPrimitive) {
-        this.componentAddEntity.setAttribute('add-entities', 'primitive', newPrimitive);
+        if (this.state.currentMode == ACTION_ADD_ENTITY) {
+            this.supportingElement.setAttribute('add-entities', 'primitive', newPrimitive);
+        }
     }
   });
