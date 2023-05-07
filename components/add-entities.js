@@ -5,14 +5,19 @@ AFRAME.registerComponent('add-entities', {
     },
     events: {
       click: function (evt) {
-        var newEntity = document.createElement('a-entity');
-        var newPosition = evt.detail.intersection.point;
-        newPosition.y = this.data.centerOfMassesOffsetY;
+        let position = evt.detail.intersection.point;
+        position.y = this.data.centerOfMassesOffsetY;
 
-        newEntity.setAttribute('geometry', 'primitive', this.data.primitive);
-        newEntity.setAttribute('position', newPosition);
-        newEntity.classList.add('selectable');
+        let newEntity = this.createEntity(position);
         this.el.sceneEl.appendChild(newEntity);
       }
+    },
+    createEntity: function(position) {
+      let newEntity = document.createElement('a-entity');
+
+      newEntity.setAttribute('geometry', 'primitive', this.data.primitive);
+      newEntity.setAttribute('position', position);
+      newEntity.classList.add('selectable');
+      return newEntity;
     }
 });
