@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
@@ -8,32 +9,36 @@
   </head>
   <body>
     <div id="app-container">
-
-      <!-- Barra de herramientas -->
-      <div id="app-toolbar">
-        <fieldset>
-          <legend><strong>Acciones</strong></legend>
-          <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties">
-          <label for="action-edit-properties">Editar propiedades</label><br>
-          <input type="radio" id="action-add-entity" name="actions" value="action-add-entity" checked>
-          <label for="action-add-entity">Agregar Entidad</label><br>
-          <select id="add-entity-list" name="actions" value="">
-            <option value="box">box</option>
-            <option value="sphere">sphere</option>
-            <option value="plane">plane</option>
-            <option value="cylinder">cylinder</option>
-          </select>
-          <br>
-          <input type="radio" id="action-remove-entity" name="actions" value="action-remove-entity">
-          <label for="action-remove-entity">Borrar Entidad</label><br>
-        </fieldset>
+      <div id="app-editor">
+        <!-- Barra de herramientas -->
+        <div id="app-toolbar">
+          <fieldset>
+            <legend><strong>Acciones</strong></legend>
+            <input type="radio" id="action-edit-properties" name="actions" value="action-edit-properties">
+            <label for="action-edit-properties">Editar propiedades</label><br>
+            <input type="radio" id="action-add-entity" name="actions" value="action-add-entity">
+            <label for="action-add-entity">Agregar Entidad</label><br>
+            <select id="add-entity-list" name="actions" value="">
+              <option value="box">box</option>
+              <option value="sphere">sphere</option>
+              <option value="plane">plane</option>
+              <option value="cylinder">cylinder</option>
+            </select>
+            <br>
+            <input type="radio" id="action-remove-entity" name="actions" value="action-remove-entity">
+            <label for="action-remove-entity">Borrar Entidad</label><br>
+          </fieldset>
+        </div>
+        <!-- Información de la entidad seleccionada -->
+        <div id="app-entity-properties" hidden>
+          <span>Sin entidades selecionadas</span>
+        </div>
       </div>
-
       <!-- Escena A-FRAME -->
       <a-scene>
 
         <a-sky color="#ECECEC"></a-sky>
-        <a-box add-entities class="selectable" id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
+        <a-box class="selectable" id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" width="32" depth="32" height="0.1"></a-box>
 
         <a-camera>
           <!-- Agrega un cursor -->
@@ -47,11 +52,6 @@
           </a-cursor>
         </a-camera>
       </a-scene>
-
-      <!-- Información de la entidad seleccionada -->
-      <div id="app-entity-properties">
-          <span>Sin entidades selecionadas</span>
-      </div>
     </div>
   </body>
 </html>

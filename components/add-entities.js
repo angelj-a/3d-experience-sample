@@ -3,6 +3,7 @@ AFRAME.registerComponent('add-entities', {
       primitive: {default: 'box'},
       centerOfMassesOffsetY: {default: 1}
     },
+    // doc: https://aframe.io/docs/1.4.0/core/component.html#events
     events: {
       click: function (evt) {
         let position = evt.detail.intersection.point;
