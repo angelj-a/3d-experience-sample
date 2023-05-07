@@ -20,8 +20,8 @@ AFRAME.registerComponent('add-entities', {
       newEntity.setAttribute('geometry', 'primitive', this.data.primitive);
       newEntity.setAttribute('material', 'color', this.data.color);
       newEntity.setAttribute('position', position);
+
       newEntity.classList.add('selectable');
-      newEntity.classList.add('removable');
       return newEntity;
     }
 });
